@@ -35,8 +35,9 @@ app.MapGet("/helloworld", () =>
     return Results.BadRequest("Exception");
 });
 
-//Keeps this request in the same line by telling the server it is "Ok".
-app.MapPost("/helloworld2", () => Results.Ok("Hello World 2ex"));
+//Keeps this request in the same line by telling the server it is
+////You can also do the same thing here with the above get request"Ok".
+app.MapPost("/helloworld2", () => Results.Ok("Hello World 2 example"));
 
 //Creates HTTP POST End Point
 app.MapPost("/helloworld2", () => "Hello World 2");
