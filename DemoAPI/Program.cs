@@ -17,7 +17,10 @@ if (app.Environment.IsDevelopment())
 }
 
 //Creates HTTP GET End Point
-app.MapGet("/helloworld", () => "HelloWorld");
+/*app.MapGet("/helloworld", () => "HelloWorld");*/
+
+//Creates HTTP GET End Point with multiple facets of information.
+
 //Creates HTTP POST End Point
 app.MapPost("/helloworld2", () => "Hello World 2");
 //All of the basic methods such as MAP, DELETE etc.. can be envoked the same way.
