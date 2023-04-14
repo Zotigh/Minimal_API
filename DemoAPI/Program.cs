@@ -20,6 +20,12 @@ if (app.Environment.IsDevelopment())
 /*app.MapGet("/helloworld", () => "HelloWorld");*/
 
 //Creates HTTP GET End Point with multiple facets of information.
+app.MapGet("/helloworld", () =>
+{
+
+});
+
+
 
 //Creates HTTP POST End Point
 app.MapPost("/helloworld2", () => "Hello World 2");
