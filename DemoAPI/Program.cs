@@ -35,7 +35,15 @@ app.MapGet("/helloworld", () =>
     return Results.BadRequest("Exception");
 });
 
-//This is used to pass something to the paramater in a GET request
+/*This is used to pass something to the paramater in a GET request
+* such as a int or a string parameter to pass data.
+* This will allow the server to add an ID to this data object.
+*/
+app.MapGet("/helloworld{id}", (int id) =>
+{
+    //Returns a bad request   
+    return Results.Ok("Id!!" + id);
+});
 
 
 //Keeps this request in the same line by telling the server it is
