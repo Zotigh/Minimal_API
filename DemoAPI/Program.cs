@@ -35,13 +35,15 @@ app.MapGet("/helloworld", () =>
     return Results.BadRequest("Exception");
 });
 
+
 /*This is used to pass something to the paramater in a GET request
 * such as a int or a string parameter to pass data.
 * This will allow the server to add an ID to this data object.
+* This only accepts the type you put for example if you use a string
+* Swagger will throw an error (for this example).
 */
 app.MapGet("/helloworld{id}", (int id) =>
 {
-    //Returns a bad request   
     return Results.Ok("Id!!" + id);
 });
 
