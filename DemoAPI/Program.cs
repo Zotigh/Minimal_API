@@ -22,7 +22,9 @@ if (app.Environment.IsDevelopment())
 //Creates HTTP GET End Point with multiple facets of information.
 app.MapGet("/helloworld", () =>
 {
-
+    //returns Hello World
+    return "Hello World";
+    /*INFO you can add calculations and multiple fields here as well.*/
 });
 
 
