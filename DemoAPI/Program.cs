@@ -20,14 +20,21 @@ if (app.Environment.IsDevelopment())
 /*app.MapGet("/helloworld", () => "HelloWorld");*/
 
 //Creates HTTP GET End Point with multiple facets of information.
-app.MapGet("/helloworld", () =>
+/*app.MapGet("/helloworld", () =>
 {
     //returns Hello World
     return "Hello World";
-    /*INFO you can add calculations and multiple fields here as well.*/
+    //INFO you can add calculations and multiple fields here as well.
+});*/
+
+
+//Creates HTTP GET End Point with multiple facets of information.
+app.MapGet("/helloworld", () =>
+{
+    
+    return Results.BadRequest("Exception");
+    
 });
-
-
 
 //Creates HTTP POST End Point
 app.MapPost("/helloworld2", () => "Hello World 2");
