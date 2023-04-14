@@ -28,12 +28,11 @@ if (app.Environment.IsDevelopment())
 });*/
 
 
-//Creates HTTP GET End Point with multiple facets of information.
+//Creates HTTP GET End Point with a bad request
 app.MapGet("/helloworld", () =>
 {
-    
+    //Returns a bad request   
     return Results.BadRequest("Exception");
-    
 });
 
 //Creates HTTP POST End Point
