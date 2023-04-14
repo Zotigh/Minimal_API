@@ -47,8 +47,8 @@ app.MapGet("/helloworld", () =>
     return Results.Ok("Id!!" + id);
 });*/
 
-//Same as above but this one explicitly says that the type needs to be an int.
-//This is the better way since the other throws a 400 instead of a 404 like it should when using a string.
+// Same as above but this one explicitly says that the type needs to be an int.
+// This is the better way since the other throws a 400 instead of a 404 like it should when using a string.
 app.MapGet("/helloworld{id:int}", (int id) =>
 {
     return Results.Ok("Id!!" + id);
