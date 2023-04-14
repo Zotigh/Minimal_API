@@ -18,6 +18,8 @@ if (app.Environment.IsDevelopment())
 
 //Creates HTTP GET End Point
 app.MapGet("/helloworld", () => "HelloWorld");
+app.MapPost("/helloworld2", () => "Hello World 2");
+
 
 app.UseHttpsRedirection();
 
