@@ -35,6 +35,9 @@ app.MapGet("/helloworld", () =>
     return Results.BadRequest("Exception");
 });
 
+ 
+app.MapPost("/helloworld2", () => Results.Ok("Hello World 2ex"));
+
 //Creates HTTP POST End Point
 app.MapPost("/helloworld2", () => "Hello World 2");
 //All of the basic methods such as MAP, DELETE etc.. can be envoked the same way.
