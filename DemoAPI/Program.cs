@@ -29,11 +29,11 @@ if (app.Environment.IsDevelopment())
 
 
 //Creates HTTP GET End Point with a bad request
-app.MapGet("/helloworld", () =>
+/*app.MapGet("/helloworld", () =>
 {
     //Returns a bad request   
     return Results.BadRequest("Exception");
-});
+});*/
 
 
 /*This is used to pass something to the paramater in a GET request
@@ -49,19 +49,21 @@ app.MapGet("/helloworld", () =>
 
 // Same as above but this one explicitly says that the type needs to be an int.
 // This is the better way since the other throws a 400 instead of a 404 like it should when using a string.
-app.MapGet("/helloworld{id:int}", (int id) =>
+/*app.MapGet("/helloworld{id:int}", (int id) =>
 {
     return Results.Ok("Id!!" + id);
-});
+});*/
 
 //Keeps this request in the same line by telling the server it is
 ////You can also do the same thing here with the above get request"Ok".
-app.MapPost("/helloworld2", () => Results.Ok("Hello World 2 example"));
+//app.MapPost("/helloworld2", () => Results.Ok("Hello World 2 example"));
 
 //Creates HTTP POST End Point
 //app.MapPost("/helloworld2", () => "Hello World 2");
 
 //All of the basic methods such as MAP, DELETE etc.. can be envoked the same way.
+
+
 
 app.UseHttpsRedirection();
 
