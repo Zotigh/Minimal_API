@@ -10,5 +10,6 @@
 
         public bool IsActive { get; set; }
 
+        public DateTime? Created { get; set; }
     }
 }
