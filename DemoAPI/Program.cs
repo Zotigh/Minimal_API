@@ -78,18 +78,15 @@ app.MapGet("/api/coupon/{id:int}", (int id) => {
 });
 
 // Creates a post requests that creates a coupon and posts it to the server.
-app.MapPost("/api/coupon", ([FromBody] Coupon coupon) =>
-{
+app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     
 });
 
-app.MapPut("/api/coupon", () =>
-{
+app.MapPut("/api/coupon", () => {
 
 });
 
-app.MapDelete("/api/coupon/{id:int}", (int id) =>
-{
+app.MapDelete("/api/coupon/{id:int}", (int id) => {
 
 });
 
