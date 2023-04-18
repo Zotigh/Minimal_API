@@ -84,8 +84,10 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     if (coupon.Id != 0 || string.IsNullOrEmpty(coupon.Name))
     {
         return Results.BadRequest("Invalid Id or Coupon Name");
-
     }
+
+    
+    coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
 });
 
 app.MapPut("/api/coupon", () => {
