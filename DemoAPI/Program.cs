@@ -75,6 +75,11 @@ app.MapGet("/api/coupon/{id:int}", (int id) => {
     return Results.Ok(CouponStore.couponList.FirstOrDefault(u=>u.Id==id));
 });
 
+app.MapPost("/api/coupon", () =>
+{
+
+});
+
 app.UseHttpsRedirection();
 
 app.Run();
