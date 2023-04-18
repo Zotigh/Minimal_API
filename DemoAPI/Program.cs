@@ -70,7 +70,7 @@ app.MapGet("/api/coupon", () => {
     return Results.Ok(CouponStore.couponList);
 });
 
-//This MapGet function returns the coupon with the specific ID.
+//This MapGet function returns the coupon with the request specific ID when ran and requested.
 app.MapGet("/api/coupon/{id:int}", (int id) => {
     return Results.Ok(CouponStore.couponList.FirstOrDefault(u=>u.Id==id));
 });
