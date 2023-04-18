@@ -65,6 +65,7 @@ if (app.Environment.IsDevelopment())
 
 //All of the basic methods such as MAP, DELETE etc.. can be envoked the same way.
 
+//Returns the list of coupons from the data folder ideal again we want to be using a database.
 app.MapGet("/api/coupon", () => {
     return Results.Ok(CouponStore.couponList);
 });
