@@ -1,6 +1,7 @@
 //Programmer: Lance Zotigh
 
 using DemoAPI.Data;
+using DemoAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
