@@ -1,5 +1,7 @@
 //Programmer: Lance Zotigh
 
+using DemoAPI.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
