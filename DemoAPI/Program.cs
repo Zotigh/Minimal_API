@@ -75,6 +75,7 @@ app.MapGet("/api/coupon/{id:int}", (int id) => {
     return Results.Ok(CouponStore.couponList.FirstOrDefault(u=>u.Id==id));
 });
 
+// Creates a post requests that creates a coupon and posts it to the server.
 app.MapPost("/api/coupon", () =>
 {
 
