@@ -65,7 +65,7 @@ if (app.Environment.IsDevelopment())
 
 //All of the basic methods such as MAP, DELETE etc.. can be envoked the same way.
 
-
+app.MapGet("/api/coupon", () => Results.Ok(CouponStore.couponList));
 
 app.UseHttpsRedirection();
 
