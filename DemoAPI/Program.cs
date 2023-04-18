@@ -80,12 +80,12 @@ app.MapPost("/api/coupon", () =>
 
 });
 
-app.MapPost("/api/coupon", () =>
+app.MapPut("/api/coupon", () =>
 {
 
 });
 
-app.MapPost("/api/coupon", () =>
+app.MapDelete("/api/coupon", () =>
 {
 
 });
