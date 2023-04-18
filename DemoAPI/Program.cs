@@ -72,7 +72,7 @@ app.MapGet("/api/coupon", () => {
 
 
 app.MapGet("/api/coupon/{id:int}", (int id) => {
-    return Results.Ok(CouponStore.couponList.FirstOrDefault(u=>u.Id==id);
+    return Results.Ok(CouponStore.couponList.FirstOrDefault(u=>u.Id==id));
 });
 
 app.UseHttpsRedirection();
