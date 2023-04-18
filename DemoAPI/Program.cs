@@ -79,7 +79,11 @@ app.MapGet("/api/coupon/{id:int}", (int id) => {
 
 // Creates a post requests that creates a coupon and posts it to the server.
 app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
-    
+    if (coupon.Id != 0 || string.IsNullOrEmpty(coupon.Name))
+    {
+        return Results.BadRequest("Invalid Id or Coupon Name");
+
+    }
 });
 
 app.MapPut("/api/coupon", () => {
