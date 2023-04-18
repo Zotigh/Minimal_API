@@ -3,6 +3,8 @@
 using DemoAPI.Data;
 using DemoAPI.Models;
 using Microsoft.AspNetCore.Mvc;
+using static System.Net.Mime.MediaTypeNames;
+using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -86,7 +88,8 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
         return Results.BadRequest("Invalid Id or Coupon Name");
     }
 
-    
+
+    //finds the list of coupons and adds it to that list as the next object (+1).
     coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
 });
 
