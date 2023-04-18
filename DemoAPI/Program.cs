@@ -79,6 +79,8 @@ app.MapGet("/api/coupon/{id:int}", (int id) => {
 
 // Creates a post requests that creates a coupon and posts it to the server.
 app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
+   //Tells Server that if the ID is not 0 (which it should be everytime since the DataBase(DB) or server is
+   //responsible for adding) or there is no name to return an error message/code. 
     if (coupon.Id != 0 || string.IsNullOrEmpty(coupon.Name))
     {
         return Results.BadRequest("Invalid Id or Coupon Name");
