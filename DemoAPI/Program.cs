@@ -85,7 +85,7 @@ app.MapPut("/api/coupon", () =>
 
 });
 
-app.MapDelete("/api/coupon", () =>
+app.MapDelete("/api/coupon/{id:int}", (int id) =>
 {
 
 });
