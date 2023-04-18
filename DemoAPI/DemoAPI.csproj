@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
+    <!--
+    * This means that if there is a nullable it must be explisidly said the value will be null. 
+    * If you are using an older version of .NET (< .NET 7) this must be disabled
+    * This can be a cause of endpoints breaking if the project is upgraded or degraded so be aware!
+    -->
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
