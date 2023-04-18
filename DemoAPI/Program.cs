@@ -80,6 +80,15 @@ app.MapPost("/api/coupon", () =>
 
 });
 
+app.MapPost("/api/coupon", () =>
+{
+
+});
+
+app.MapPost("/api/coupon", () =>
+{
+
+});
 app.UseHttpsRedirection();
 
 app.Run();
