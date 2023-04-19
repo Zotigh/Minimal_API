@@ -88,14 +88,16 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
         return Results.BadRequest("Invalid Id or Coupon Name");
     }
 
-
+    //Safe guard to check if the name of the coupon already exists to prevent duplicates.
     if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon.Name.ToLower()) != null) 
     {
-        return Results.BadRequest($"Coupon Name Already Exists");
+        return Results.BadRequest("Coupon Name Already Exists");
     }
 
     //finds the list of coupons and adds it to that list as the next object (+1).
     coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
+
+    
 });
 
 app.MapPut("/api/coupon", () => {
