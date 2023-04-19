@@ -97,6 +97,7 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     //finds the list of coupons and adds it to that list as the next object (+1).
     coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
 
+    //Adds the coupon to the coupon list
     CouponStore.couponList.Add(coupon);
 });
 
