@@ -8,14 +8,14 @@ using System.Collections.Generic;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+//Add services to the container.
+//Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -53,8 +53,8 @@ if (app.Environment.IsDevelopment())
     return Results.Ok("Id!!" + id);
 });*/
 
-// Same as above but this one explicitly says that the type needs to be an int.
-// This is the better way since the other throws a 400 instead of a 404 like it should when using a string.
+//Same as above but this one explicitly says that the type needs to be an int.
+//This is the better way since the other throws a 400 instead of a 404 like it should when using a string.
 /*app.MapGet("/helloworld{id:int}", (int id) =>
 {
     return Results.Ok("Id!!" + id);
@@ -103,6 +103,10 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     //This works but usually   
     //return Results.Ok(coupon);
 
+
+    //We have to write the route it was saved.
+    //TODO the '$' is string interpolation look that up
+    //This is the proper way the response should be handled as it is a created instance but Ok does work.
     return Results.Created($"/api/coupon {coupon.Id}", coupon);
 });
 
