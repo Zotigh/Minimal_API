@@ -81,7 +81,7 @@ app.MapGet("/api/coupon", () => {
 });
 
 //This MapGet function returns the coupon with the request specific ID when ran and requested.
-
+//Added the Get name so we can call this endpoint.
 app.MapGet("/api/coupon/{id:int}", (int id) => {
     return Results.Ok(CouponStore.couponList.FirstOrDefault(u=>u.Id==id));
 }).WithName("GetCoupon");
