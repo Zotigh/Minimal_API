@@ -100,7 +100,8 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     //Adds the coupon to the coupon list
     CouponStore.couponList.Add(coupon);
 
-    return Results.Ok(coupon);
+   //This works but usually   
+   //return Results.Ok(coupon);
 });
 
 
