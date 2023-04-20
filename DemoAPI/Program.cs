@@ -103,6 +103,7 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     return Results.Ok(coupon);
 });
 
+
 app.MapPut("/api/coupon", () => {
 
 });
