@@ -1,8 +1,9 @@
 //Programmer: Lance Zotigh
 /*
  * ****You can use the url localhost7101 then the methods file path****
- * Ex: https ://localhost7101/api/coupon/ what ever the id is
- * in this example 3 -> https ://localhost7101/api/coupon/3 -> (remove space)
+ * Ex: https ://localhost7160/api/coupon/ what ever the id is
+ * in this example 3 -> https ://localhost7160/api/coupon/3 -> (remove space)
+ * The local host url will be in the Request URL field once the website is ran.
 */
 
 using DemoAPI.Data;
