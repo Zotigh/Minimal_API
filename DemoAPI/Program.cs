@@ -78,7 +78,7 @@ if (app.Environment.IsDevelopment())
 //Returns the list of coupons from the data folder ideal again we want to be using a database.
 app.MapGet("/api/coupon", () => {
     return Results.Ok(CouponStore.couponList);
-});
+}).WithName("GetCoupons");
 
 //This MapGet function returns the coupon with the request specific ID when ran and requested.
 //Added the Get name so we can call this endpoint.
