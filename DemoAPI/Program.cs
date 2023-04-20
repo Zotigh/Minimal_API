@@ -115,6 +115,10 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     //We have to write the route it was saved.
     //TODO the '$' is string interpolation look that up
     //This is the proper way the response should be handled as it is a created instance but Ok does work.
+    //This example is with out the WithName function
+    //return Results.Created($"/api/coupon {coupon.Id}", coupon);
+
+
     return Results.Created($"/api/coupon {coupon.Id}", coupon);
 }).WithName("CreateCoupon");
 
