@@ -116,7 +116,7 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     //TODO the '$' is string interpolation look that up
     //This is the proper way the response should be handled as it is a created instance but Ok does work.
     return Results.Created($"/api/coupon {coupon.Id}", coupon);
-});
+}).WithName("CreateCoupon");
 
 
 app.MapPut("/api/coupon", () => {
