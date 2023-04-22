@@ -86,7 +86,7 @@ if (app.Environment.IsDevelopment())
 app.MapGet("/api/coupon", () => {
     return Results.Ok(CouponStore.couponList);
 }).WithName("GetCoupons").Produces<IEnumerable<Coupon>>(200);
-
+//Since this one is reteiveing a list the IEnumerable keyword needs to be used.
 
 //This MapGet function returns the coupon with the request specific ID when ran and requested.
 //Added the Get name so we can call this endpoint.
