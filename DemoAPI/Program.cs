@@ -132,7 +132,7 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
 
 }).WithName("CreateCoupon").Accepts<Coupon>("application.json").Produces<Coupon>(201).Produces(400);
 //Above the produces is used to specify the status code that can be produced. These can be added as needed.
-//
+//The Accepts keyword is used to specify the specific type of request the method will accept.
 
 app.MapPut("/api/coupon", () => {
 
