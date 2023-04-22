@@ -1,4 +1,10 @@
-//Programmer: Lance Zotigh
+/******************************************************
+* Programmer: Lance Zotigh (lzotigh1@cnm.edu/lzotigh1@gmail.com)
+* Program: API Demo
+* Purpose: Demo that shows how to create a Minimal API
+*******************************************************/
+
+
 /*
  * ****You can use the url localhost7101 then the methods file path****
  * Ex: https ://localhost7160/api/coupon/ what ever the id is
