@@ -128,6 +128,7 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     //Used the WithName function to return the fill end point in the generated URL so you dont have to maually enter.
     //This is useful to generate the url to plug n play.
     return Results.CreatedAtRoute("GetCoupon", new {id=coupon.Id}, coupon);
+
 }).WithName("CreateCoupon");
 
 
