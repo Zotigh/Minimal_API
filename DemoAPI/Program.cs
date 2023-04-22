@@ -129,7 +129,7 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     //This is useful to generate the url to plug n play.
     return Results.CreatedAtRoute("GetCoupon", new {id=coupon.Id}, coupon);
 
-}).WithName("CreateCoupon");
+}).WithName("CreateCoupon").Produces<Coupon>(201).Produces(400);
 
 
 app.MapPut("/api/coupon", () => {
