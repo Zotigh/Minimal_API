@@ -91,7 +91,7 @@ app.MapGet("/api/coupon", () => {
 //Added the Get name so we can call this endpoint.
 app.MapGet("/api/coupon/{id:int}", (int id) => {
     return Results.Ok(CouponStore.couponList.FirstOrDefault(u=>u.Id==id));
-}).WithName("GetCoupon");
+}).WithName("GetCoupon").Produces<Coupon>(200);
 
 // Creates a post requests that creates a coupon and posts it to the server.
 app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
