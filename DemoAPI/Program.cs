@@ -130,7 +130,7 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) => {
     return Results.CreatedAtRoute("GetCoupon", new {id=coupon.Id}, coupon);
 
 }).WithName("CreateCoupon").Produces<Coupon>(201).Produces(400);
-
+//Above the produces is used to specify the status code that can be produced. These can be added as needed.
 
 app.MapPut("/api/coupon", () => {
 
