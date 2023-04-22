@@ -85,7 +85,8 @@ if (app.Environment.IsDevelopment())
 //Added the WithName function as well
 app.MapGet("/api/coupon", () => {
     return Results.Ok(CouponStore.couponList);
-}).WithName("GetCoupons").Produces<Coupon>(200);
+}).WithName("GetCoupons").Produces<IEnumerable<Coupon>>(200);
+
 
 //This MapGet function returns the coupon with the request specific ID when ran and requested.
 //Added the Get name so we can call this endpoint.
