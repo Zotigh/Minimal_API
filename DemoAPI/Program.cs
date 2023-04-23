@@ -104,22 +104,22 @@ app.MapGet("/api/coupon/{id:int}", (int id) => {
 app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
    //Tells Server that if the ID is not 0 (which it should be everytime since the DataBase(DB) or server is
    //responsible for adding) or there is no name to return an error message/code. 
-    if (coupon.Id != 0 || string.IsNullOrEmpty(coupon.Name))
+    if (coupon_C_DTO.Id != 0 || string.IsNullOrEmpty(coupon_C_DTO.Name))
     {
         return Results.BadRequest("Invalid Id or Coupon Name");
     }
 
     //Safe guard to check if the name of the coupon already exists to prevent duplicates.
-    if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon.Name.ToLower()) != null) 
+    if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon_C_DTO.Name.ToLower()) != null) 
     {
         return Results.BadRequest("Coupon Name Already Exists");
     }
 
     //finds the list of coupons and adds it to that list as the next object (+1).
-    coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
+    coupon_C_DTO.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
 
     //Adds the coupon to the coupon list
-    CouponStore.couponList.Add(coupon);
+    CouponStore.couponList.Add(coupon_C_DTO);
 
     //This works but usually   
     //return Results.Ok(coupon);
@@ -134,7 +134,7 @@ app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
 
     //Used the WithName function to return the fill end point in the generated URL so you dont have to maually enter.
     //This is useful to generate the url to plug n play.
-    return Results.CreatedAtRoute("GetCoupon", new {id=coupon.Id}, coupon);
+    return Results.CreatedAtRoute("GetCoupon", new {id= coupon_C_DTO.Id}, coupon_C_DTO);
 
 }).WithName("CreateCoupon").Accepts<Coupon>("application.json").Produces<Coupon>(201).Produces(400);
 //Above the produces is used to specify the status code that can be produced. These can be added as needed.
