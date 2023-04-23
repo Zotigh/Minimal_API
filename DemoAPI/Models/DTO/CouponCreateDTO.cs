@@ -1,6 +1,6 @@
 ﻿namespace DemoAPI.Models.DTO
 {
-    public class CouponCreateDTS
+    public class CouponCreateDTO
     {
     }
 }
