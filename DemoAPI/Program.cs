@@ -84,6 +84,7 @@ if (app.Environment.IsDevelopment())
 //Returns the list of coupons from the data folder ideal again we want to be using a database.
 //Added the WithName function as well
 app.MapGet("/api/coupon", (ILogger<Program> _logger) => {
+    _logger.Log(LogLevel.Information, "Get all Coupons");
     return Results.Ok(CouponStore.couponList);
 }).WithName("GetCoupons").Produces<IEnumerable<Coupon>>(200);
 //Since this one is reteiveing a list the IEnumerable keyword needs to be used.
