@@ -115,6 +115,9 @@ app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
         return Results.BadRequest("Coupon Name Already Exists");
     }
 
+    //This creates a full fledged coupon object that can use the other needed properties
+    //such as ID. This makes it so the user does not see the other fields and can edit them.
+    //This is because the other fields are already generated automatically and should not be edited.
     Coupon coupon = new()
     {
         IsActive = coupon_C_DTO.IsActive,
