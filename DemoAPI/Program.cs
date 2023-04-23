@@ -104,7 +104,7 @@ app.MapGet("/api/coupon/{id:int}", (int id) => {
 app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
    //Tells Server that if the ID is not 0 (which it should be everytime since the DataBase(DB) or server is
    //responsible for adding) or there is no name to return an error message/code. 
-    if (coupon_C_DTO.Id != 0 || string.IsNullOrEmpty(coupon_C_DTO.Name))
+    if (string.IsNullOrEmpty(coupon_C_DTO.Name))
     {
         return Results.BadRequest("Invalid Id or Coupon Name");
     }
@@ -115,11 +115,18 @@ app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
         return Results.BadRequest("Coupon Name Already Exists");
     }
 
+    Coupon coupon = new()
+    {
+        IsActive = coupon_C_DTO.IsActive,
+        Name = coupon_C_DTO.Name,
+        Percent = coupon_C_DTO.Percent
+    };
+
     //finds the list of coupons and adds it to that list as the next object (+1).
-    coupon_C_DTO.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
+    coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
 
     //Adds the coupon to the coupon list
-    CouponStore.couponList.Add(coupon_C_DTO);
+    CouponStore.couponList.Add(coupon);
 
     //This works but usually   
     //return Results.Ok(coupon);
@@ -134,7 +141,7 @@ app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
 
     //Used the WithName function to return the fill end point in the generated URL so you dont have to maually enter.
     //This is useful to generate the url to plug n play.
-    return Results.CreatedAtRoute("GetCoupon", new {id= coupon_C_DTO.Id}, coupon_C_DTO);
+    return Results.CreatedAtRoute("GetCoupon", new {id= coupon.Id}, coupon);
 
 }).WithName("CreateCoupon").Accepts<Coupon>("application.json").Produces<Coupon>(201).Produces(400);
 //Above the produces is used to specify the status code that can be produced. These can be added as needed.
