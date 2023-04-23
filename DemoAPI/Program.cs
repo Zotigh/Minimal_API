@@ -135,6 +135,7 @@ app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
     //return Results.Ok(coupon);
 
     //This is the same as the above instead it utilizes the couponDTO which does not show the date modified field.
+    // THIS IS ALSO SO WE DO NOT EXPOSE OR ENTITY WHICH IS COUPON BY USING THE DTO'S
     CouponDTO couponDTO = new()
     {
         Id = coupon.Id,
