@@ -18,6 +18,9 @@ using Microsoft.AspNetCore.Mvc;
 using static System.Net.Mime.MediaTypeNames;
 using System.Collections.Generic;
 
+//Here is where you would use a logger function if it is not available.
+//You can add the service here then use it within the methods below.
+
 var builder = WebApplication.CreateBuilder(args);
 
 //Add services to the container.
