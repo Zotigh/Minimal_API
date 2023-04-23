@@ -14,7 +14,7 @@
 
 using DemoAPI.Data;
 using DemoAPI.Models;
-using DemoAPI.;
+using DemoAPI.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using static System.Net.Mime.MediaTypeNames;
 using System.Collections.Generic;
