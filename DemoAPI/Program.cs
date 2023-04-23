@@ -131,7 +131,7 @@ app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
     //Adds the coupon to the coupon list
     CouponStore.couponList.Add(coupon);
 
-    //This works but usually   
+    //This works but is usually not the proper way to return. 
     //return Results.Ok(coupon);
 
 
@@ -146,7 +146,7 @@ app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
     //This is useful to generate the url to plug n play.
     return Results.CreatedAtRoute("GetCoupon", new {id= coupon.Id}, coupon);
 
-}).WithName("CreateCoupon").Accepts<Coupon>("application.json").Produces<Coupon>(201).Produces(400);
+}).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application.json").Produces<CouponDTO>(201).Produces(400);
 //Above the produces is used to specify the status code that can be produced. These can be added as needed.
 //The Accepts keyword is used to specify the specific type of request the method will accept.
 
