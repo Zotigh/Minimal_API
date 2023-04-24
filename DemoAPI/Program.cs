@@ -121,12 +121,17 @@ app.MapPost("/api/coupon", (IMapper _mapper, [FromBody] CouponCreateDTO coupon_C
     //This creates a full fledged coupon object that can use the other needed properties
     //such as ID. This makes it so the user does not see the other fields and can edit them.
     //This is because the other fields are already generated automatically and should not be edited.
-    Coupon coupon = new()
+    
+
+    //This is how to do this when not using IMapper but the concept is the same as the above documentation.
+    /*Coupon coupon = new()
     {
         IsActive = coupon_C_DTO.IsActive,
         Name = coupon_C_DTO.Name,
         Percent = coupon_C_DTO.Percent
-    };
+    };*/
+
+
 
     //finds the list of coupons and adds it to that list as the next object (+1).
     coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
