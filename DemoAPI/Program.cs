@@ -122,14 +122,14 @@ app.MapPost("/api/coupon", (IMapper _mapper, [FromBody] CouponCreateDTO coupon_C
     //such as ID. This makes it so the user does not see the other fields and can edit them.
     //This is because the other fields are already generated automatically and should not be edited.
     //This function using the Imapper will automatically map the function to the desired class.
-    Coupon coupon = _mapper.Map<Coupon>(coupon_C_DTO);
+    //Coupon coupon = _mapper.Map<Coupon>(coupon_C_DTO);
     //This is how to do this when not using IMapper but the concept is the same as the above documentation.
-    /*Coupon coupon = new()
+    Coupon coupon = new()
     {
         IsActive = coupon_C_DTO.IsActive,
         Name = coupon_C_DTO.Name,
         Percent = coupon_C_DTO.Percent
-    };*/
+    };
 
 
 
@@ -144,15 +144,15 @@ app.MapPost("/api/coupon", (IMapper _mapper, [FromBody] CouponCreateDTO coupon_C
 
     //This is the same as the above instead it utilizes the couponDTO which does not show the date modified field.
     // THIS IS ALSO SO WE DO NOT EXPOSE OR ENTITY WHICH IS COUPON BY USING THE DTO'S
-    CouponDTO couponDTO = _mapper.Map<CouponDTO>(coupon);
-    /*CouponDTO couponDTO = new()
+    //CouponDTO couponDTO = _mapper.Map<CouponDTO>(coupon);
+    CouponDTO couponDTO = new()
     {
         Id = coupon.Id,
         IsActive = coupon.IsActive,
         Name = coupon.Name,
         Percent = coupon.Percent,
         Created = coupon.Created
-    };*/
+    };
 
     //We have to write the route it was saved.
     //TODO the '$' is string interpolation look that up
