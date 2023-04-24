@@ -4,7 +4,6 @@
 * Purpose: Demo that shows how to create a Minimal API
 *******************************************************/
 
-
 /*
  * ****You can use the url localhost7101 then the methods file path****
  * Ex: https ://localhost7160/api/coupon/ what ever the id is
