@@ -1,6 +1,12 @@
-﻿namespace DemoAPI
+﻿using AutoMapper;
+
+namespace DemoAPI
 {
-    public class MappingConfig
+    public class MappingConfig : Profile
     {
+        public MappingConfig() 
+        {
+            CreateMap<Coupon, CouponCreateDTO> ()
+;        }
     }
 }
