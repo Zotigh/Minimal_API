@@ -121,8 +121,8 @@ app.MapPost("/api/coupon", (IMapper _mapper, [FromBody] CouponCreateDTO coupon_C
     //This creates a full fledged coupon object that can use the other needed properties
     //such as ID. This makes it so the user does not see the other fields and can edit them.
     //This is because the other fields are already generated automatically and should not be edited.
-    
-
+    //This function using the Imapper will automatically map the function to the desired class.
+    Coupon coupon = _mapper.Map<Coupon>(coupon_C_DTO);
     //This is how to do this when not using IMapper but the concept is the same as the above documentation.
     /*Coupon coupon = new()
     {
