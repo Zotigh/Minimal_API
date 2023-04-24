@@ -18,6 +18,7 @@ using DemoAPI.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using static System.Net.Mime.MediaTypeNames;
 using System.Collections.Generic;
+using DemoAPI;
 
 //Here is where you would use a logger function if it is not available.
 //You can add the service here then use it within the methods below.
@@ -28,6 +29,7 @@ var builder = WebApplication.CreateBuilder(args);
 //Learn more about configuring Swagger/OpenAPI at https ://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 var app = builder.Build();
 
