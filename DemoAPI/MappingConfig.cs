@@ -8,7 +8,8 @@ namespace DemoAPI
     {
         public MappingConfig() 
         {
-            CreateMap<Coupon, CouponCreateDTO> ()
-;        }
+            CreateMap<Coupon, CouponCreateDTO>().ReverseMap();
+            CreateMap<Coupon, CouponDTO>().ReverseMap();
+            ;        }
     }
 }
