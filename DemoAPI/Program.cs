@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using static System.Net.Mime.MediaTypeNames;
 using System.Collections.Generic;
 using DemoAPI;
+using AutoMapper;
 
 //Here is where you would use a logger function if it is not available.
 //You can add the service here then use it within the methods below.
@@ -103,7 +104,7 @@ app.MapGet("/api/coupon/{id:int}", (int id) => {
 }).WithName("GetCoupon").Produces<Coupon>(200);
 
 // Creates a post requests that creates a coupon and posts it to the server.
-app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
+app.MapPost("/api/coupon", (IMapper _mapper, [FromBody] CouponCreateDTO coupon_C_DTO) => {
    //Tells Server that if the ID is not 0 (which it should be everytime since the DataBase(DB) or server is
    //responsible for adding) or there is no name to return an error message/code. 
     if (string.IsNullOrEmpty(coupon_C_DTO.Name))
