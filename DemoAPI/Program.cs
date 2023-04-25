@@ -19,6 +19,7 @@ using DemoAPI.Models;
 using DemoAPI.Models.DTO;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 //Here is where you would use a logger function if it is not available.
 //You can add the service here then use it within the methods below.
@@ -94,24 +95,40 @@ if (app.Environment.IsDevelopment())
 //Added the WithName function as well
 app.MapGet("/api/coupon", (ILogger<Program> _logger) =>
 {
+    APIResponse response = new();
     //A logger method that will tell the console what is happening via a logged message.
     _logger.Log(LogLevel.Information, "Get all Coupons");
-    return Results.Ok(CouponStore.couponList);
-}).WithName("GetCoupons").Produces<IEnumerable<Coupon>>(200);
+    response.Result = CouponStore.couponList;
+    response.IsSuccess = true;
+    response.StatusCode = HttpStatusCode.OK;
+
+    //return Results.Ok(CouponStore.couponList);
+    return Results.Ok(response);
+    //}).WithName("GetCoupons").Produces<IEnumerable<Coupon>>(200);
+}).WithName("GetCoupons").Produces<APIResponse>(200);
 //Since this one is reteiveing a list the IEnumerable keyword needs to be used.
 
 //This MapGet function returns the coupon with the request specific ID when ran and requested.
 //Added the Get name so we can call this endpoint.
 app.MapGet("/api/coupon/{id:int}", (int id) =>
 {
-    return Results.Ok(CouponStore.couponList.FirstOrDefault(u => u.Id == id));
-}).WithName("GetCoupon").Produces<Coupon>(200);
+    APIResponse response = new();
+    response.Result = CouponStore.couponList.FirstOrDefault(u => u.Id == id);
+    response.IsSuccess = true;
+    response.StatusCode = HttpStatusCode.OK;
+
+    //return Results.Ok(CouponStore.couponList.FirstOrDefault(u => u.Id == id));
+    return Results.Ok(response);
+    //}).WithName("GetCoupon").Produces<Coupon>(200);
+}).WithName("GetCoupon").Produces<APIResponse>(200);
 
 // Creates a post requests that creates a coupon and posts it to the server.
 //app.MapPost("/api/coupon", (IMapper _mapper, [FromBody] CouponCreateDTO coupon_C_DTO) => {
 app.MapPost("/api/coupon", async (IMapper _mapper,
     IValidator<CouponCreateDTO> _validation, [FromBody] CouponCreateDTO coupon_C_DTO) =>
 {
+    APIResponse response = new() { IsSuccess = false, StatusCode = HttpStatusCode.BadRequest };
+   
     // This will not work if this is not a async task method.
     var validationResult = await _validation.ValidateAsync(coupon_C_DTO);
     //This works if you do not want to make the request a async task
@@ -123,16 +140,21 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
     //if (string.IsNullOrEmpty(coupon_C_DTO.Name))
     if (!validationResult.IsValid)
     {
+        response.ErrorMessages.Add(validationResult.Errors.FirstOrDefault().ToString());
+
         //return Results.BadRequest("Invalid Id or Coupon Name");
 
         //This can be customized if you want to return all of the headers.
-        return Results.BadRequest(validationResult.Errors.FirstOrDefault().ToString());
+        //return Results.BadRequest(validationResult.Errors.FirstOrDefault().ToString());
+        return Results.BadRequest(response);
     }
 
     //Safe guard to check if the name of the coupon already exists to prevent duplicates.
     if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon_C_DTO.Name.ToLower()) != null)
     {
-        return Results.BadRequest("Coupon Name Already Exists");
+        response.ErrorMessages.Add("Coupon Name Already Exists");
+        //return Results.BadRequest("Coupon Name Already Exists");
+        return Results.BadRequest(response);
     }
 
     //This creates a full fledged coupon object that can use the other needed properties
@@ -180,9 +202,15 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
 
     //Used the WithName function to return the fill end point in the generated URL so you dont have to maually enter.
     //This is useful to generate the url to plug n play.
-    return Results.CreatedAtRoute("GetCoupon", new { id = coupon.Id }, couponDTO);
+    //return Results.CreatedAtRoute("GetCoupon", new { id = coupon.Id }, couponDTO);
 
-}).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application/json").Produces<CouponDTO>(201).Produces(400);
+    response.Result = couponDTO;
+    response.IsSuccess = true;
+    response.StatusCode = HttpStatusCode.Created;
+    return Results.Ok();
+
+    //}).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application/json").Produces<CouponDTO>(201).Produces(400);
+}).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application/json").Produces<APIResponse>(201).Produces(400);
 //Above the produces is used to specify the status code that can be produced. These can be added as needed.
 //The Accepts keyword is used to specify the specific type of request the method will accept.
 
