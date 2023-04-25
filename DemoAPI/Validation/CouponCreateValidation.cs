@@ -12,6 +12,7 @@ namespace DemoAPI.Validation
         {
             //Defines what the rules are for.
             RuleFor(model => model.Name).NotEmpty();
+            RuleFor(model => model.Percent).InclusiveBetween(1, 100);
         }
     }
 }
