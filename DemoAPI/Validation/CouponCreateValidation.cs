@@ -11,7 +11,7 @@ namespace DemoAPI.Validation
         public CouponCreateValidation()
         {
             //Defines what the rules are for.
-
+            RuleFor(model => model.Name).NotEmpty();
         }
     }
 }
