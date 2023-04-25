@@ -115,9 +115,13 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
 
     //Tells Server that if the ID is not 0 (which it should be everytime since the DataBase(DB) or server is
     //responsible for adding) or there is no name to return an error message/code. 
-    if (string.IsNullOrEmpty(coupon_C_DTO.Name))
+    //if (string.IsNullOrEmpty(coupon_C_DTO.Name))
+    if (!validationResult.IsValid)
     {
-        return Results.BadRequest("Invalid Id or Coupon Name");
+        //return Results.BadRequest("Invalid Id or Coupon Name");
+
+        //This can be customized if you want to return all of the headers.
+        return Results.BadRequest(validationResult.Errors.FirstOrDefault().ToString());
     }
 
     //Safe guard to check if the name of the coupon already exists to prevent duplicates.
