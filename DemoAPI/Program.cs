@@ -12,18 +12,13 @@
  * The local host url will be in the Request URL field once the website is ran.
 */
 
+using AutoMapper;
+using DemoAPI;
 using DemoAPI.Data;
 using DemoAPI.Models;
 using DemoAPI.Models.DTO;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.OpenApi;
-using static System.Net.Mime.MediaTypeNames;
-using System.Collections.Generic;
-using DemoAPI;
-using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 
 //Here is where you would use a logger function if it is not available.
 //You can add the service here then use it within the methods below.
@@ -94,7 +89,8 @@ if (app.Environment.IsDevelopment())
 
 //Returns the list of coupons from the data folder ideal again we want to be using a database.
 //Added the WithName function as well
-app.MapGet("/api/coupon", (ILogger<Program> _logger) => {
+app.MapGet("/api/coupon", (ILogger<Program> _logger) =>
+{
     //A logger method that will tell the console what is happening via a logged message.
     _logger.Log(LogLevel.Information, "Get all Coupons");
     return Results.Ok(CouponStore.couponList);
@@ -103,27 +99,29 @@ app.MapGet("/api/coupon", (ILogger<Program> _logger) => {
 
 //This MapGet function returns the coupon with the request specific ID when ran and requested.
 //Added the Get name so we can call this endpoint.
-app.MapGet("/api/coupon/{id:int}", (int id) => {
-    return Results.Ok(CouponStore.couponList.FirstOrDefault(u=>u.Id==id));
+app.MapGet("/api/coupon/{id:int}", (int id) =>
+{
+    return Results.Ok(CouponStore.couponList.FirstOrDefault(u => u.Id == id));
 }).WithName("GetCoupon").Produces<Coupon>(200);
 
 // Creates a post requests that creates a coupon and posts it to the server.
 //app.MapPost("/api/coupon", (IMapper _mapper, [FromBody] CouponCreateDTO coupon_C_DTO) => {
 app.MapPost("/api/coupon", async (IMapper _mapper,
-    IValidator <CouponCreateDTO> _validation, [FromBody] CouponCreateDTO coupon_C_DTO) => {
+    IValidator<CouponCreateDTO> _validation, [FromBody] CouponCreateDTO coupon_C_DTO) =>
+{
 
-        //var validationResult = await _validation.ValidateAsync(coupon_C_DTO);
-        var validationResult = _validation.ValidateAsync(coupon_C_DTO).GetAwaiter().GetResult();
+    //var validationResult = await _validation.ValidateAsync(coupon_C_DTO);
+    var validationResult = _validation.ValidateAsync(coupon_C_DTO).GetAwaiter().GetResult();
 
-        //Tells Server that if the ID is not 0 (which it should be everytime since the DataBase(DB) or server is
-        //responsible for adding) or there is no name to return an error message/code. 
-        if (string.IsNullOrEmpty(coupon_C_DTO.Name))
+    //Tells Server that if the ID is not 0 (which it should be everytime since the DataBase(DB) or server is
+    //responsible for adding) or there is no name to return an error message/code. 
+    if (string.IsNullOrEmpty(coupon_C_DTO.Name))
     {
         return Results.BadRequest("Invalid Id or Coupon Name");
     }
 
     //Safe guard to check if the name of the coupon already exists to prevent duplicates.
-    if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon_C_DTO.Name.ToLower()) != null) 
+    if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon_C_DTO.Name.ToLower()) != null)
     {
         return Results.BadRequest("Coupon Name Already Exists");
     }
@@ -173,17 +171,19 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
 
     //Used the WithName function to return the fill end point in the generated URL so you dont have to maually enter.
     //This is useful to generate the url to plug n play.
-    return Results.CreatedAtRoute("GetCoupon", new {id=coupon.Id}, couponDTO);
+    return Results.CreatedAtRoute("GetCoupon", new { id = coupon.Id }, couponDTO);
 
 }).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application/json").Produces<CouponDTO>(201).Produces(400);
 //Above the produces is used to specify the status code that can be produced. These can be added as needed.
 //The Accepts keyword is used to specify the specific type of request the method will accept.
 
-app.MapPut("/api/coupon", () => {
+app.MapPut("/api/coupon", () =>
+{
 
 });
 
-app.MapDelete("/api/coupon/{id:int}", (int id) => {
+app.MapDelete("/api/coupon/{id:int}", (int id) =>
+{
 
 });
 
