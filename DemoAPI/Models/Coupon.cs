@@ -19,10 +19,10 @@ namespace DemoAPI.Models
 
         public bool IsActive { get; set; }
 
-        //The "?" tells the compiler that this feild is nullable which should satisfy the compiler since it knows.
+        //The "?" tells the compiler that this field is nullable which should satisfy the compiler since it knows.
         public DateTime? Created { get; set; }
 
-        //The "?" tells the compiler that this feild is nullable which should satisfy the compiler since it knows.
+        //The "?" tells the compiler that this field is nullable which should satisfy the compiler since it knows.
         public DateTime? LastUpdated { get; set; }
     }
 }
