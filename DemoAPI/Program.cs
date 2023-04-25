@@ -29,6 +29,7 @@ var builder = WebApplication.CreateBuilder(args);
 //Learn more about configuring Swagger/OpenAPI at https ://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+//Adds the Automapper dependency Auto Mapper will not work without this.
 builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 var app = builder.Build();
