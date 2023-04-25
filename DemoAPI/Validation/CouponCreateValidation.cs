@@ -10,6 +10,7 @@ namespace DemoAPI.Validation
         //Validation constructor
         public CouponCreateValidation()
         {
+            //Defines what the rules are for.
 
         }
     }
