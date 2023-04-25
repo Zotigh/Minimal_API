@@ -11,7 +11,11 @@ namespace DemoAPI.Validation
         public CouponCreateValidation()
         {
             //Defines what the rules are for.
+
+            //Defines rule will not be empty.
             RuleFor(model => model.Name).NotEmpty();
+
+           //Defines that the percent must be between a certain threshold 1-100.
             RuleFor(model => model.Percent).InclusiveBetween(1, 100);
         }
     }
