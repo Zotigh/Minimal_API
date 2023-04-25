@@ -109,11 +109,15 @@ app.MapGet("/api/coupon/{id:int}", (int id) => {
 
 // Creates a post requests that creates a coupon and posts it to the server.
 //app.MapPost("/api/coupon", (IMapper _mapper, [FromBody] CouponCreateDTO coupon_C_DTO) => {
-app.MapPost("/api/coupon", (IMapper _mapper,
+app.MapPost("/api/coupon", async (IMapper _mapper,
     IValidator <CouponCreateDTO> _validation, [FromBody] CouponCreateDTO coupon_C_DTO) => {
-    //Tells Server that if the ID is not 0 (which it should be everytime since the DataBase(DB) or server is
-    //responsible for adding) or there is no name to return an error message/code. 
-    if (string.IsNullOrEmpty(coupon_C_DTO.Name))
+
+        //var validationResult = await _validation.ValidateAsync(coupon_C_DTO);
+        var validationResult = _validation.ValidateAsync(coupon_C_DTO).GetAwaiter().GetResult();
+
+        //Tells Server that if the ID is not 0 (which it should be everytime since the DataBase(DB) or server is
+        //responsible for adding) or there is no name to return an error message/code. 
+        if (string.IsNullOrEmpty(coupon_C_DTO.Name))
     {
         return Results.BadRequest("Invalid Id or Coupon Name");
     }
