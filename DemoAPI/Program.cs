@@ -112,7 +112,7 @@ app.MapGet("/api/coupon/{id:int}", (int id) =>
 app.MapPost("/api/coupon", async (IMapper _mapper,
     IValidator<CouponCreateDTO> _validation, [FromBody] CouponCreateDTO coupon_C_DTO) =>
 {
-
+    // This will not work since this is not a async task method.
     //var validationResult = await _validation.ValidateAsync(coupon_C_DTO);
     var validationResult = _validation.ValidateAsync(coupon_C_DTO).GetAwaiter().GetResult();
 
