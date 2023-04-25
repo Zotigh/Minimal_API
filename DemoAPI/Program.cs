@@ -33,7 +33,7 @@ var builder = WebApplication.CreateBuilder(args);
 //Learn more about configuring Swagger/OpenAPI at https ://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddAutoMapper(typeof(MappingConfig));
+builder.Services.AddAutoMapper(typeof(MappingConfig));
 
 var app = builder.Build();
 
@@ -167,9 +167,9 @@ app.MapPost("/api/coupon", ([FromBody] CouponCreateDTO coupon_C_DTO) => {
 
     //Used the WithName function to return the fill end point in the generated URL so you dont have to maually enter.
     //This is useful to generate the url to plug n play.
-    return Results.CreatedAtRoute("GetCoupon", new {id= coupon.Id}, couponDTO);
+    return Results.CreatedAtRoute("GetCoupon", new {id=coupon.Id}, couponDTO);
 
-}).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application.json").Produces<CouponDTO>(201).Produces(400);
+}).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application/json").Produces<CouponDTO>(201).Produces(400);
 //Above the produces is used to specify the status code that can be produced. These can be added as needed.
 //The Accepts keyword is used to specify the specific type of request the method will accept.
 
