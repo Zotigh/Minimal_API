@@ -4,6 +4,8 @@
 * Purpose: Demo that shows how to create a Minimal API
 *******************************************************/
 
+/*We are going to use a store for this project but ideally a database should be used to keep all of the coupons*/
+
 namespace DemoAPI.Models
 {
     //Class for attributes
@@ -22,7 +24,5 @@ namespace DemoAPI.Models
 
         //The "?" tells the compiler that this feild is nullable which should satisfy the compiler since it knows.
         public DateTime? LastUpdated { get; set; }
-
-        /*We are going to use a store for this project but ideally a database should be used to keep all of the coupons*/
     }
 }
