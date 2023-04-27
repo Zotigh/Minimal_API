@@ -214,9 +214,10 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
 //Above the produces is used to specify the status code that can be produced. These can be added as needed.
 //The Accepts keyword is used to specify the specific type of request the method will accept.
 
-app.MapPut("/api/coupon", () =>
+app.MapPut("/api/coupon", async (IMapper _mapper,
+    IValidator<CouponCreateDTO> _validation, [FromBody] CouponCreateDTO coupon_C_DTO) =>
 {
-    //TODO
+
 });
 
 app.MapDelete("/api/coupon/{id:int}", (int id) =>
