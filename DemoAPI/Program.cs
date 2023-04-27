@@ -209,6 +209,7 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
     response.StatusCode = HttpStatusCode.Created;
     return Results.Ok();
 
+
     //}).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application/json").Produces<CouponDTO>(201).Produces(400);
 }).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application/json").Produces<APIResponse>(201).Produces(400);
 //Above the produces is used to specify the status code that can be produced. These can be added as needed.
