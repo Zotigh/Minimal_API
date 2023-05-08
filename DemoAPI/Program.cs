@@ -222,7 +222,7 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
 
 app.MapDelete("/api/coupon/{id:int}", (int id) =>
 {
-
+    //TODO: make a Delete method
 });
 
 app.UseHttpsRedirection();
