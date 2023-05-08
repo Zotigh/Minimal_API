@@ -217,12 +217,12 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
 app.MapPut("/api/coupon", async (IMapper _mapper,
     IValidator<CouponCreateDTO> _validation, [FromBody] CouponCreateDTO coupon_C_DTO) =>
 {
-    //TODO: make a put request method
+    //TODO: Make a put request method
 });
 
 app.MapDelete("/api/coupon/{id:int}", (int id) =>
 {
-    //TODO: make a Delete method
+    //TODO: Make a Delete request method
 });
 
 app.UseHttpsRedirection();
