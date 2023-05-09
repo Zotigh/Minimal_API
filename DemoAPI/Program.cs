@@ -236,7 +236,7 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
         return Results.BadRequest(response);
     }
     */
-    Coupon coupon = _mapper.Map<Coupon>(coupon_C_DTO);
+    Coupon coupon = _mapper.Map<Coupon>(coupon_U_DTO);
 
     coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
 
