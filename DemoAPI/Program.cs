@@ -246,6 +246,7 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
     couponFromStore.Percent = coupon_U_DTO.Percent;
     couponFromStore.LastUpdated = DateTime.Now;
 
+    //converts the coupon from store to the DTO using AutoMapAttribute mapper
     response.Result = _mapper.Map<CouponDTO>(couponFromStore);
     response.IsSuccess = true;
     response.StatusCode = HttpStatusCode.OK;
