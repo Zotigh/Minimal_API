@@ -229,7 +229,7 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
     }
     /*
      * TODO this needs to be updated so that we dont update the same Id we are already updating
-     * 
+     * Check 1:36:00 for more info.
     if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon_U_DTO.Name.ToLower()) != null)
     {
         response.ErrorMessages.Add("Coupon Name Already Exists");
