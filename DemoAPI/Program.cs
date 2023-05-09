@@ -217,7 +217,7 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
 app.MapPut("/api/coupon", async (IMapper _mapper,
     IValidator<CouponCreateDTO> _validation, [FromBody] CouponCreateDTO coupon_C_DTO) =>
 {
-    //TODO: Make a put request method
+    
 });
 
 app.MapDelete("/api/coupon/{id:int}", (int id) =>
