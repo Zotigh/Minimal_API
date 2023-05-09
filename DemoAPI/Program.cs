@@ -246,11 +246,10 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
     couponFromStore.Percent = coupon_U_DTO.Percent;
     couponFromStore.LastUpdated = DateTime.Now;
 
-    response.Result = couponDTO;
+    response.Result = _mapper.Map<CouponDTO>(couponFromStore);
     response.IsSuccess = true;
-    response.StatusCode = HttpStatusCode.Created;
-    return Results.Ok();
-
+    response.StatusCode = HttpStatusCode.OK;
+    return Results.Ok(response);
 });
 
 app.MapDelete("/api/coupon/{id:int}", (int id) =>
