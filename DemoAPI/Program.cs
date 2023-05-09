@@ -217,7 +217,35 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
 app.MapPut("/api/coupon", async (IMapper _mapper,
     IValidator<CouponUpdateDTO> _validation, [FromBody] CouponUpdateDTO coupon_C_DTO) =>
 {
-    
+    APIResponse response = new() { IsSuccess = false, StatusCode = HttpStatusCode.BadRequest };
+
+    var validationResult = await _validation.ValidateAsync(coupon_C_DTO);
+
+    if (!validationResult.IsValid)
+    {
+        response.ErrorMessages.Add(validationResult.Errors.FirstOrDefault().ToString());
+
+        return Results.BadRequest(response);
+    }
+
+    if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon_C_DTO.Name.ToLower()) != null)
+    {
+        response.ErrorMessages.Add("Coupon Name Already Exists");
+        return Results.BadRequest(response);
+    }
+
+    Coupon coupon = _mapper.Map<Coupon>(coupon_C_DTO);
+
+    coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
+
+    CouponStore.couponList.Add(coupon);
+    CouponDTO couponDTO = _mapper.Map<CouponDTO>(coupon);
+
+    response.Result = couponDTO;
+    response.IsSuccess = true;
+    response.StatusCode = HttpStatusCode.Created;
+    return Results.Ok();
+
 });
 
 app.MapDelete("/api/coupon/{id:int}", (int id) =>
