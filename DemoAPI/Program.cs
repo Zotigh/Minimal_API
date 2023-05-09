@@ -246,8 +246,6 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
     couponFromStore.Percent = coupon_U_DTO.Percent;
     couponFromStore.LastUpdated = DateTime.Now;
 
-    Coupon coupon = _mapper.Map<Coupon>(coupon_U_DTO);
-
     response.Result = couponDTO;
     response.IsSuccess = true;
     response.StatusCode = HttpStatusCode.Created;
