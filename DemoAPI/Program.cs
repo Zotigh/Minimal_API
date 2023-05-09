@@ -257,6 +257,7 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
 app.MapDelete("/api/coupon/{id:int}", (int id) =>
 {
     //TODO: Make a Delete request method
+    //:Left off at 1:35:00 need to review the last method to make sure the Put is working and giving the proper reaponses.
 });
 
 app.UseHttpsRedirection();
