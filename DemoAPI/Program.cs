@@ -215,11 +215,11 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
 //The Accepts keyword is used to specify the specific type of request the method will accept.
 
 app.MapPut("/api/coupon", async (IMapper _mapper,
-    IValidator<CouponUpdateDTO> _validation, [FromBody] CouponUpdateDTO coupon_C_DTO) =>
+    IValidator<CouponUpdateDTO> _validation, [FromBody] CouponUpdateDTO coupon_U_DTO) =>
 {
     APIResponse response = new() { IsSuccess = false, StatusCode = HttpStatusCode.BadRequest };
 
-    var validationResult = await _validation.ValidateAsync(coupon_C_DTO);
+    var validationResult = await _validation.ValidateAsync(coupon_U_DTO);
 
     if (!validationResult.IsValid)
     {
@@ -227,13 +227,15 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
 
         return Results.BadRequest(response);
     }
-
-    if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon_C_DTO.Name.ToLower()) != null)
+    /*
+     * TODO this needs to be updated so that the same id we are using is not the one that is beong modified
+     * 
+    if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon_U_DTO.Name.ToLower()) != null)
     {
         response.ErrorMessages.Add("Coupon Name Already Exists");
         return Results.BadRequest(response);
     }
-
+    */
     Coupon coupon = _mapper.Map<Coupon>(coupon_C_DTO);
 
     coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
