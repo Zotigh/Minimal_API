@@ -239,6 +239,7 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
 
     // More valdation is probably needed here but is not requiered to make this work for now but it needs to be used when making a complete product.
 
+    //This finds the ID and updates it to the current values that are being updated.
     Coupon couponFromStore = CouponStore.couponList.FirstOrDefault(u => u.Id == coupon_U_DTO.Id);
     couponFromStore.IsActive = coupon_U_DTO.IsActive;
     couponFromStore.Name = coupon_U_DTO.Name;
