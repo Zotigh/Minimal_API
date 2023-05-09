@@ -215,7 +215,7 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
 //The Accepts keyword is used to specify the specific type of request the method will accept.
 
 app.MapPut("/api/coupon", async (IMapper _mapper,
-    IValidator<CouponUpdateDTO> _validation, [FromBody] CouponCreateDTO coupon_C_DTO) =>
+    IValidator<CouponUpdateDTO> _validation, [FromBody] CouponUpdateDTO coupon_C_DTO) =>
 {
     
 });
