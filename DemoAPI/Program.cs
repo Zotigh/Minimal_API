@@ -238,6 +238,13 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
     */
 
     // More valdation is probably needed here but is not requiered to make this work for now but it needs to be used when making a complete product.
+
+    Coupon couponFromStore = CouponStore.couponList.FirstOrDefault(u => u.Id == coupon_U_DTO.Id);
+    couponFromStore.IsActive = coupon_U_DTO.IsActive;
+    couponFromStore.Name = coupon_U_DTO.Name;
+    couponFromStore.Percent = coupon_U_DTO.Percent;
+    couponFromStore.LastUpdated = DateTime.Now;
+
     Coupon coupon = _mapper.Map<Coupon>(coupon_U_DTO);
 
     coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
