@@ -207,7 +207,7 @@ app.MapPost("/api/coupon", async (IMapper _mapper,
     response.Result = couponDTO;
     response.IsSuccess = true;
     response.StatusCode = HttpStatusCode.Created;
-    return Results.Ok();
+    return Results.Ok(response);
 
     //}).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application/json").Produces<CouponDTO>(201).Produces(400);
 }).WithName("CreateCoupon").Accepts<CouponCreateDTO>("application/json").Produces<APIResponse>(201).Produces(400);
@@ -251,7 +251,7 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
     response.IsSuccess = true;
     response.StatusCode = HttpStatusCode.OK;
     return Results.Ok(response);
-});
+}).WithName("UpdateCoupon").Accepts<CouponUpdateDTO>("application/json").Produces<APIResponse>(200).Produces(400);
 
 app.MapDelete("/api/coupon/{id:int}", (int id) =>
 {
