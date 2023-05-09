@@ -252,6 +252,7 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
     response.StatusCode = HttpStatusCode.OK;
     return Results.Ok(response);
 }).WithName("UpdateCoupon").Accepts<CouponUpdateDTO>("application/json").Produces<APIResponse>(200).Produces(400);
+//Accepts function
 
 app.MapDelete("/api/coupon/{id:int}", (int id) =>
 {
