@@ -228,7 +228,7 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
         return Results.BadRequest(response);
     }
     /*
-     * TODO this needs to be updated so that the same id we are using is not the one that is beong modified
+     * TODO this needs to be updated so that we dont update the same Id we are already updating
      * 
     if (CouponStore.couponList.FirstOrDefault(u => u.Name.ToLower() == coupon_U_DTO.Name.ToLower()) != null)
     {
