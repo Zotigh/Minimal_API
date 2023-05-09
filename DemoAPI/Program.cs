@@ -248,11 +248,6 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
 
     Coupon coupon = _mapper.Map<Coupon>(coupon_U_DTO);
 
-    coupon.Id = CouponStore.couponList.OrderByDescending(u => u.Id).FirstOrDefault().Id + 1;
-
-    CouponStore.couponList.Add(coupon);
-    CouponDTO couponDTO = _mapper.Map<CouponDTO>(coupon);
-
     response.Result = couponDTO;
     response.IsSuccess = true;
     response.StatusCode = HttpStatusCode.Created;
