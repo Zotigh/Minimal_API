@@ -256,7 +256,31 @@ app.MapPut("/api/coupon", async (IMapper _mapper,
 
 app.MapDelete("/api/coupon/{id:int}", (int id) =>
 {
-    
+    APIResponse response = new() { IsSuccess = false, StatusCode = HttpStatusCode.BadRequest };
+
+    //Can add validations but for the sake of this Demo it will be removed for now.
+    /*
+     * TODO add validation
+     */
+
+    // This uses the id that was passed as the argument as the object we are going to modify.
+    Coupon couponFromStore = CouponStore.couponList.FirstOrDefault(u => u.Id == id);
+
+    // TODO use guard clauses here instead.
+    if (couponFromStore != null)
+    {
+        CouponStore.couponList.Remove(couponFromStore);
+        response.IsSuccess = true;
+        //You can also use    response.StatusCode = HttpStatusCode.OK;
+        response.StatusCode = HttpStatusCode.NoContent;
+        //It depends how you are going to implement the delete method but this is usually used.
+        return Results.Ok(response);
+    }
+    else 
+    {
+        response.ErrorMessages.Add("Invalid ID");
+        return Results.BadRequest(response);
+    }
 });
 
 app.UseHttpsRedirection();
