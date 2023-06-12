@@ -6,6 +6,7 @@
 
 /*We are going to use a store for this project but ideally a database should be used to keep all of the coupons*/
 
+
 namespace DemoAPI.Models
 {
     //Class for attributes
