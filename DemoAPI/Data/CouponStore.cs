@@ -4,6 +4,8 @@
 * Purpose: Demo that shows how to create a Minimal API
 *******************************************************/
 
+//TODO Make a database using SQL to store the data.
+
 using DemoAPI.Models;
 
 namespace DemoAPI.Data
