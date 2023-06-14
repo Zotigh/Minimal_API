@@ -4,7 +4,7 @@
 * Purpose: Demo that shows how to create a Minimal API
 *******************************************************/
 
-//TODO Make a database using SQL to store the data.
+//TODO Make a database using SQL to store the data. Need to find an appropriate data base such as MySQL or SQL Lite.
 
 using DemoAPI.Models;
 
